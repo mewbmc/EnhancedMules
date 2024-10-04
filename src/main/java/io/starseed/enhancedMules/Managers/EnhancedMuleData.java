@@ -37,7 +37,7 @@ public class EnhancedMuleData implements ConfigurationSerializable {
         // Initialize inventories with custom titles
         this.mainInventory = Bukkit.createInventory(null, 54, "Enhanced Mule Storage");
         this.craftingInventory = Bukkit.createInventory(null, 9, "Enhanced Mule Crafting");
-        this.furnaceInventory = Bukkit.createInventory(null, 3, "Enhanced Mule Furnace");
+        this.furnaceInventory = Bukkit.createInventory(null, 9, "Enhanced Mule Furnace");
     }
 
     // Constructor for loading from configuration
@@ -54,7 +54,7 @@ public class EnhancedMuleData implements ConfigurationSerializable {
         // Load inventories
         this.mainInventory = Bukkit.createInventory(null, 54, "Enhanced Mule Storage");
         this.craftingInventory = Bukkit.createInventory(null, 9, "Enhanced Mule Crafting");
-        this.furnaceInventory = Bukkit.createInventory(null, 3, "Enhanced Mule Furnace");
+        this.furnaceInventory = Bukkit.createInventory(null, 9, "Enhanced Mule Furnace");
 
         // Load inventory contents if they exist
         if (data.containsKey("mainInventory")) {

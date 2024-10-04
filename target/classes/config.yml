@@ -1,45 +1,11 @@
-# Enhanced Mules Configuration
+# config.yml
+settings:
+  max-mules-per-player: 5
+  level-up-messages: true
+  auto-save-interval: 5 # minutes
 
-# Mule Settings
-mule:
-  # Inventory settings
-  inventory:
-    rows: 6  # Double chest size (6 rows)
-    allow-hoppers: false
-
-  # Combat settings
-  combat:
-    base-damage: 4.0
-    attack-range: 3.0
-    defend-owner-range: 5.0
-
-  # Breeding settings
-  breeding:
-    enhanced-chance: 0.1  # 10% chance for enhanced mule when breeding
-
-  # Leveling settings
-  leveling:
-    max-level: 30
-    exp-per-level: 1000
-    exp-gains:
-      travel: 1  # Experience per block traveled
-      combat: 50  # Experience per combat engagement
-      crafting: 10  # Experience per craft
-
-  # Features
-  features:
-    whistle-range: 50
-    auto-collect-range: 5
-
-  # Permissions
-  permissions:
-    allow-trusted-players: true
-    trust-command: true
-
-# Messages
-messages:
-  prefix: "&8[&6Enhanced Mules&8]&r "
-  mule-created: "&aYour enhanced mule has been created!"
-  level-up: "&aYour mule has reached level %level%!"
-  not-owner: "&cYou don't own this mule!"
-  inventory-full: "&cThe mule's inventory is full!"
+mule-settings:
+  base-health: 20.0
+  base-speed: 0.2
+  base-jump-strength: 0.5
+  experience-multiplier: 1.0
