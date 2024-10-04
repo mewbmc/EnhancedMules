@@ -1,5 +1,6 @@
 package io.starseed.enhancedMules.Managers;
 
+import io.starseed.enhancedMules.EnhancedMules;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.inventory.Inventory;
@@ -20,9 +21,11 @@ public class EnhancedMuleData implements ConfigurationSerializable {
     private Inventory mainInventory;
     private Inventory craftingInventory;
     private Inventory furnaceInventory;
+    private final EnhancedMules plugin;
 
     // Constructor for new mules
     public EnhancedMuleData(UUID muleUUID, UUID ownerUUID) {
+        this.plugin = EnhancedMules.getInstance();
         this.muleUUID = muleUUID;
         this.ownerUUID = ownerUUID;
         this.level = 1;
@@ -39,6 +42,7 @@ public class EnhancedMuleData implements ConfigurationSerializable {
 
     // Constructor for loading from configuration
     public EnhancedMuleData(Map<String, Object> data) {
+        this.plugin = EnhancedMules.getInstance();
         this.muleUUID = UUID.fromString((String) data.get("muleUUID"));
         this.ownerUUID = data.get("ownerUUID") != null ? UUID.fromString((String) data.get("ownerUUID")) : null;
         this.level = (int) data.get("level");
@@ -54,12 +58,33 @@ public class EnhancedMuleData implements ConfigurationSerializable {
 
         // Load inventory contents if they exist
         if (data.containsKey("mainInventory")) {
-            ItemStack[] contents = ((Map<String, ItemStack[]>) data.get("mainInventory")).get("contents");
+            @SuppressWarnings("unchecked")
+            Map<String, ItemStack[]> inventoryMap = (Map<String, ItemStack[]>) data.get("mainInventory");
+            ItemStack[] contents = inventoryMap.get("contents");
             if (contents != null) {
                 this.mainInventory.setContents(contents);
             }
         }
-        // Similarly load other inventories...
+
+        // Load crafting inventory
+        if (data.containsKey("craftingInventory")) {
+            @SuppressWarnings("unchecked")
+            Map<String, ItemStack[]> inventoryMap = (Map<String, ItemStack[]>) data.get("craftingInventory");
+            ItemStack[] contents = inventoryMap.get("contents");
+            if (contents != null) {
+                this.craftingInventory.setContents(contents);
+            }
+        }
+
+        // Load furnace inventory
+        if (data.containsKey("furnaceInventory")) {
+            @SuppressWarnings("unchecked")
+            Map<String, ItemStack[]> inventoryMap = (Map<String, ItemStack[]>) data.get("furnaceInventory");
+            ItemStack[] contents = inventoryMap.get("contents");
+            if (contents != null) {
+                this.furnaceInventory.setContents(contents);
+            }
+        }
     }
 
     @Override
@@ -76,11 +101,18 @@ public class EnhancedMuleData implements ConfigurationSerializable {
         data.put("jumpStrength", jumpStrength);
 
         // Save inventory contents
-        Map<String, ItemStack[]> inventoryMap = new HashMap<>();
-        inventoryMap.put("contents", mainInventory.getContents());
-        data.put("mainInventory", inventoryMap);
+        Map<String, ItemStack[]> mainInventoryMap = new HashMap<>();
+        mainInventoryMap.put("contents", mainInventory.getContents());
+        data.put("mainInventory", mainInventoryMap);
 
-        // Similarly save other inventories...
+        Map<String, ItemStack[]> craftingInventoryMap = new HashMap<>();
+        craftingInventoryMap.put("contents", craftingInventory.getContents());
+        data.put("craftingInventory", craftingInventoryMap);
+
+        Map<String, ItemStack[]> furnaceInventoryMap = new HashMap<>();
+        furnaceInventoryMap.put("contents", furnaceInventory.getContents());
+        data.put("furnaceInventory", furnaceInventoryMap);
+
         return data;
     }
 
@@ -131,6 +163,11 @@ public class EnhancedMuleData implements ConfigurationSerializable {
 
     public void load() {
         // TODO: Implement loading from config/database
-        // This will be implemented based on your chosen storage method
+
+    }
+
+    // Static deserialize method required for ConfigurationSerializable - dont change
+    public static EnhancedMuleData deserialize(Map<String, Object> data) {
+        return new EnhancedMuleData(data);
     }
 }

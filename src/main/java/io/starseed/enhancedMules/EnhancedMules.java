@@ -3,7 +3,7 @@ package io.starseed.enhancedMules;
 import io.starseed.enhancedMules.Commands.MuleCommands;
 import io.starseed.enhancedMules.Managers.EnhancedMuleData;
 import io.starseed.enhancedMules.Managers.MuleManager;
-import io.starseed.enhancedMules.Listeners.MuleEventListener;
+import io.starseed.enhancedMules.Listeners.MuleListeners;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -12,6 +12,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Map;
 import java.util.logging.Level;
 
 public class EnhancedMules extends JavaPlugin {
@@ -41,7 +42,7 @@ public class EnhancedMules extends JavaPlugin {
         this.muleManager = new MuleManager(this);
 
         // Register event listeners
-        getServer().getPluginManager().registerEvents(new MuleEventListener(this), this);
+        getServer().getPluginManager().registerEvents(new MuleListeners(this), this);
         getServer().getPluginManager().registerEvents(muleManager, this);
 
         // Register commands
@@ -98,7 +99,8 @@ public class EnhancedMules extends JavaPlugin {
 
             for (EnhancedMuleData muleData : muleManager.getAllMuleData()) {
                 ConfigurationSection muleSection = mulesSection.createSection(muleData.getMuleUUID().toString());
-                for (Map.Entry<String, Object> entry : muleData.serialize().entrySet()) {
+                Map<String, Object> serializedData = muleData.serialize();
+                for (Map.Entry<String, Object> entry : serializedData.entrySet()) {
                     muleSection.set(entry.getKey(), entry.getValue());
                 }
             }
@@ -137,5 +139,8 @@ public class EnhancedMules extends JavaPlugin {
 
     public YamlConfiguration getMuleConfig() {
         return muleConfig;
+    }
+
+    public void dumpDebugInfo() {
     }
 }
