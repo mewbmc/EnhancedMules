@@ -127,43 +127,11 @@ public class MuleManager implements Listener {
     public EnhancedMuleData getMuleData(UUID muleUUID) {
         return muleDatas.get(muleUUID);
     }
-}
 
-public class EnhancedMuleData {
-    private final UUID muleUUID;
-    private UUID ownerUUID;
-    private int level;
-    private double experience;
-    private Inventory mainInventory;
-    private Inventory craftingInventory;
-    private Inventory furnaceInventory;
-
-    public EnhancedMuleData(UUID muleUUID, UUID ownerUUID) {
-        this.muleUUID = muleUUID;
-        this.ownerUUID = ownerUUID;
-        this.level = 1;
-        this.experience = 0;
-        // Create inventories
-        this.mainInventory = Bukkit.createInventory(null, 54, "Enhanced Mule Storage");
-        this.craftingInventory = Bukkit.createInventory(null, 9, "Enhanced Mule Crafting");
-        this.furnaceInventory = Bukkit.createInventory(null, 3, "Enhanced Mule Furnace");
+    public void reloadData() {
     }
 
-    public void save() {
-        // TODO: Implement saving to config/database
+    public char[] getActiveMuleCount() {
+        return new char[0];
     }
-
-    public void load() {
-        // TODO: Implement loading from config/database
-    }
-
-    // Getters and setters
-    public UUID getMuleUUID() { return muleUUID; }
-    public UUID getOwnerUUID() { return ownerUUID; }
-    public void setOwnerUUID(UUID ownerUUID) { this.ownerUUID = ownerUUID; }
-    public int getLevel() { return level; }
-    public double getExperience() { return experience; }
-    public Inventory getMainInventory() { return mainInventory; }
-    public Inventory getCraftingInventory() { return craftingInventory; }
-    public Inventory getFurnaceInventory() { return furnaceInventory; }
 }

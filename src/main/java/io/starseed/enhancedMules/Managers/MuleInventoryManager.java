@@ -21,6 +21,13 @@ public class MuleInventoryManager {
         this.inventoryHolders = new HashMap<>();
     }
 
+    public void reloadData() {
+    }
+
+    public char[] getLoadedInventoryCount() {
+        return new char[0];
+    }
+
     public class MuleInventoryHolder {
         private final Inventory mainInventory;
         private final Inventory craftingTable;

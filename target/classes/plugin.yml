@@ -1,0 +1,51 @@
+name: EnhancedMules
+version: '1.0.0'
+main: io.starseed.enhancedMules.EnhancedMules
+api-version: '1.19'
+authors: [YourName]
+description: Enhanced mules with advanced storage and combat capabilities
+commands:
+  mule:
+    description: Main command for Enhanced Mules plugin
+    usage: /<command> [create|remove|info|list|transfer|debug|reload]
+    aliases: [em, enhancedmule]
+
+permissions:
+  enhancedmules.*:
+    description: Gives access to all Enhanced Mules commands
+    children:
+      enhancedmules.use: true
+      enhancedmules.create: true
+      enhancedmules.modify: true
+      enhancedmules.remove: true
+      enhancedmules.admin: true
+      enhancedmules.debug: true
+
+  enhancedmules.use:
+    description: Allows using enhanced mules
+    default: true
+
+  enhancedmules.create:
+    description: Allows creating enhanced mules
+    default: op
+
+  enhancedmules.modify:
+    description: Allows modifying enhanced mule settings
+    default: op
+
+  enhancedmules.remove:
+    description: Allows removing enhanced mules
+    default: op
+
+  enhancedmules.admin:
+    description: Gives access to administrative commands
+    default: op
+    children:
+      enhancedmules.use: true
+      enhancedmules.create: true
+      enhancedmules.modify: true
+      enhancedmules.remove: true
+
+  enhancedmules.debug:
+    description: Allows access to debug commands
+    default: op

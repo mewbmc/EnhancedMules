@@ -2,7 +2,9 @@ package io.starseed.enhancedMules.Listeners;
 
 import io.starseed.enhancedMules.EnhancedMules;
 import io.starseed.enhancedMules.Managers.MuleManager;
+import io.starseed.enhancedMules.Managers.EnhancedMuleData;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Mule;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -74,7 +76,7 @@ public class MuleListeners implements Listener {
                         if (event.getDamager() instanceof Entity) {
                             Entity attacker = (Entity) event.getDamager();
                             // Attack back
-                            mule.setTarget(attacker);
+                            mule.setTarget((LivingEntity) attacker);
                         }
                     }
                 }
