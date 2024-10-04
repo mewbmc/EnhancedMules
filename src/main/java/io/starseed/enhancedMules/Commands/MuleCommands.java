@@ -9,11 +9,10 @@ import org.bukkit.Location;
 import io.starseed.enhancedMules.Utils.MuleUtils;
 import io.starseed.enhancedMules.Utils.MuleUtils.Debug;
 import io.starseed.enhancedMules.EnhancedMules;
-import com.example.enhancedmules.EnhancedMuleData;
+import io.starseed.enhancedMules.Managers.EnhancedMuleData;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class MuleCommands implements CommandExecutor, TabCompleter {
     private final EnhancedMules plugin;

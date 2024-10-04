@@ -1,6 +1,6 @@
 name: EnhancedMules
 version: '1.0.0'
-main: com.example.enhancedmules.EnhancedMules
+main: io.starseed.enhancedMules.EnhancedMules
 api-version: '1.19'
 authors: [YourName]
 description: Enhanced mules with advanced storage and combat capabilities

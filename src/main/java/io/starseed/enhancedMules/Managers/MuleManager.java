@@ -129,7 +129,7 @@ public class MuleManager implements Listener {
     }
 }
 
-class EnhancedMuleData {
+public class EnhancedMuleData {
     private final UUID muleUUID;
     private UUID ownerUUID;
     private int level;
