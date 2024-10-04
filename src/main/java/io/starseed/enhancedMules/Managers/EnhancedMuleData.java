@@ -126,8 +126,7 @@ public class EnhancedMuleData implements ConfigurationSerializable {
 
     // Save/Load methods
     public void save() {
-        // TODO: Implement saving to config/database
-        // This will be implemented based on your chosen storage method
+        plugin.saveMuleData();
     }
 
     public void load() {

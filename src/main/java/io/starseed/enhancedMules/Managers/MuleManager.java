@@ -19,6 +19,7 @@ import java.util.UUID;
 import java.util.Map;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class MuleManager implements Listener {
     private final EnhancedMules plugin;
@@ -128,10 +129,43 @@ public class MuleManager implements Listener {
         return muleDatas.get(muleUUID);
     }
 
-    public void reloadData() {
+    /**
+     * Clears all stored mule data from memory
+     */
+    public void clearData() {
+        muleDatas.clear();
     }
 
-    public char[] getActiveMuleCount() {
-        return new char[0];
+    /**
+     * Registers mule data in the manager
+     * @param muleData The mule data to register
+     */
+    public void registerMuleData(EnhancedMuleData muleData) {
+        muleDatas.put(muleData.getMuleUUID(), muleData);
+    }
+
+    /**
+     * Gets all stored mule data
+     * @return Collection of all mule data
+     */
+    public Collection<EnhancedMuleData> getAllMuleData() {
+        return muleDatas.values();
+    }
+
+    /**
+     * Gets the current count of active mules
+     * @return The number of active enhanced mules
+     */
+    public int getActiveMuleCount() {
+        return muleDatas.size();
+    }
+
+    /**
+     * Reloads all mule data from storage
+     */
+    public void reloadData() {
+        clearData();
+        // The actual loading will be handled by the main class
+        // through loadAllMuleData()
     }
 }
